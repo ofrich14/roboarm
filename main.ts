@@ -72,9 +72,18 @@ radio.onReceivedString(function (receivedString) {
     }
 })
 basic.forever(function () {
-    makerbit.connectUltrasonicDistanceSensor(DigitalPin.P3, DigitalPin.P6)
-    if (makerbit.isUltrasonicDistanceLessThan(109, DistanceUnit.CM)) {
+    makerbit.connectUltrasonicDistanceSensor(DigitalPin.P5, DigitalPin.P8)
+    if (makerbit.isUltrasonicDistanceLessThan(1, DistanceUnit.CM)) {
         music.play(music.stringPlayable("G F A C B F A D ", 274), music.PlaybackMode.UntilDone)
         SuperBit.MotorStopAll()
+        basic.clearScreen()
+    } else {
+        basic.showLeds(`
+            # . . . #
+            . # . # .
+            . . # . .
+            . # . # .
+            # . . . #
+            `)
     }
 })
