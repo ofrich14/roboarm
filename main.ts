@@ -55,10 +55,16 @@ radio.onReceivedString(function (receivedString) {
         basic.pause(3000)
         basic.clearScreen()
         SuperBit.MotorStopAll()
-    } else if (receivedString == "Z") {
+    } else if (receivedString == "arm") {
     	
-    } else if (receivedString == "X") {
-        SuperBit.Servo2(SuperBit.enServo.S1, 0)
+    } else if (receivedString == "catch") {
+        if (מצב_צבט == 0) {
+            מצב_צבט += 1
+            SuperBit.Servo2(SuperBit.enServo.S5, 110)
+        } else {
+            מצב_צבט = 0
+            SuperBit.Servo2(SuperBit.enServo.S5, 0)
+        }
     } else if (receivedString == "C") {
         SuperBit.Servo2(SuperBit.enServo.S1, 0)
     } else {
@@ -71,19 +77,13 @@ radio.onReceivedString(function (receivedString) {
             `)
     }
 })
+let מצב_צבט = 0
+מצב_צבט = 0
+SuperBit.Servo2(SuperBit.enServo.S1, 0)
 basic.forever(function () {
-    makerbit.connectUltrasonicDistanceSensor(DigitalPin.P5, DigitalPin.P8)
-    if (makerbit.isUltrasonicDistanceLessThan(1, DistanceUnit.CM)) {
+    makerbit.connectUltrasonicDistanceSensor(DigitalPin.P3, DigitalPin.P6)
+    if (makerbit.isUltrasonicDistanceLessThan(109, DistanceUnit.CM)) {
         music.play(music.stringPlayable("G F A C B F A D ", 274), music.PlaybackMode.UntilDone)
         SuperBit.MotorStopAll()
-        basic.clearScreen()
-    } else {
-        basic.showLeds(`
-            # . . . #
-            . # . # .
-            . . # . .
-            . # . # .
-            # . . . #
-            `)
     }
 })
