@@ -57,7 +57,7 @@ radio.onReceivedString(function (receivedString) {
         SuperBit.MotorStopAll()
     } else if (receivedString == "arm") {
     	
-    } else if (receivedString == "catch") {
+    } else if (receivedString == "c") {
         if (מצב_צבט == 0) {
             מצב_צבט += 1
             SuperBit.Servo2(SuperBit.enServo.S5, 110)
