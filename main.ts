@@ -55,6 +55,12 @@ radio.onReceivedString(function (receivedString) {
         basic.pause(3000)
         basic.clearScreen()
         SuperBit.MotorStopAll()
+    } else if (receivedString == "Z") {
+    	
+    } else if (receivedString == "X") {
+        SuperBit.Servo2(SuperBit.enServo.S1, 0)
+    } else if (receivedString == "C") {
+        SuperBit.Servo2(SuperBit.enServo.S1, 0)
     } else {
         basic.showLeds(`
             # . . . #
@@ -63,5 +69,12 @@ radio.onReceivedString(function (receivedString) {
             . # . # .
             # . . . #
             `)
+    }
+})
+basic.forever(function () {
+    makerbit.connectUltrasonicDistanceSensor(DigitalPin.P3, DigitalPin.P6)
+    if (makerbit.isUltrasonicDistanceLessThan(109, DistanceUnit.CM)) {
+        music.play(music.stringPlayable("G F A C B F A D ", 274), music.PlaybackMode.UntilDone)
+        SuperBit.MotorStopAll()
     }
 })

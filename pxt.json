@@ -5,7 +5,9 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "SuperBit": "github:lzty634158/superbit#0a0d6cd2c18804f6b56e944d0c7ff7bd91473ec8"
+        "SuperBit": "github:lzty634158/superbit#0a0d6cd2c18804f6b56e944d0c7ff7bd91473ec8",
+        "pxt-sonar": "github:microsoft/pxt-sonar#v0.0.5",
+        "MakerBit-Ultrasonic": "github:1010technologies/pxt-makerbit-ultrasonic#v1.0.8"
     },
     "files": [
         "main.blocks",
@@ -19,7 +21,7 @@
         "branch": "v3.0.61",
         "tag": "v3.0.61",
         "commits": "https://github.com/microsoft/pxt-microbit/commits/9ff91acb8524c6a52fee90cf7194a4643c424363",
-        "target": "6.0.27",
+        "target": "6.0.28",
         "pxt": "6.0.35",
         "targetId": "microbit"
     },
