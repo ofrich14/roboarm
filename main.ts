@@ -55,8 +55,6 @@ radio.onReceivedString(function (receivedString) {
         basic.pause(3000)
         basic.clearScreen()
         SuperBit.MotorStopAll()
-    } else if (receivedString == "arm") {
-    	
     } else if (receivedString == "c") {
         if (מצב_צבט == 0) {
             מצב_צבט += 1
@@ -65,8 +63,23 @@ radio.onReceivedString(function (receivedString) {
             מצב_צבט = 0
             SuperBit.Servo2(SuperBit.enServo.S5, 0)
         }
-    } else if (receivedString == "C") {
-        SuperBit.Servo2(SuperBit.enServo.S1, 0)
+    } else if (receivedString == "arm") {
+        if (מצב_זרועה == 0) {
+            מצב_זרועה += 1
+            SuperBit.Servo2(SuperBit.enServo.S1, 0)
+        } else if (מצב_זרועה == 1) {
+            מצב_זרועה += 1
+            SuperBit.Servo2(SuperBit.enServo.S1, 30)
+        } else if (מצב_זרועה == 2) {
+            מצב_זרועה += 1
+            SuperBit.Servo2(SuperBit.enServo.S1, 60)
+        } else if (מצב_זרועה == 3) {
+            מצב_זרועה += 1
+            SuperBit.Servo2(SuperBit.enServo.S1, 90)
+        } else if (מצב_זרועה == 4) {
+            SuperBit.Servo2(SuperBit.enServo.S1, 130)
+            מצב_זרועה = 0
+        }
     } else {
         basic.showLeds(`
             # . . . #
@@ -77,8 +90,11 @@ radio.onReceivedString(function (receivedString) {
             `)
     }
 })
+let מצב_זרועה = 0
 let מצב_צבט = 0
 מצב_צבט = 0
+SuperBit.Servo2(SuperBit.enServo.S5, 0)
+מצב_זרועה = 0
 SuperBit.Servo2(SuperBit.enServo.S1, 0)
 basic.forever(function () {
     makerbit.connectUltrasonicDistanceSensor(DigitalPin.P3, DigitalPin.P6)
